@@ -49,4 +49,5 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Print image URL
-        run: echo "Image: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest"
+        run: |
+          echo "Image: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest"
