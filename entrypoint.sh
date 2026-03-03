@@ -17,6 +17,7 @@ exec vllm serve "${MODEL_PATH}" \
     --tensor-parallel-size "${TENSOR_PARALLEL}" \
     --dtype "${DTYPE}" \
     --max-model-len "${MAX_MODEL_LEN}" \
+    --model-impl transformers \
     --trust-remote-code \
     --port "${PORT}" \
     --host 0.0.0.0 \
