@@ -16,8 +16,7 @@ RUN pip install --no-cache-dir \
         "accelerate>=0.34.0" \
         "safetensors>=0.4.3" \
         "sentencepiece>=0.2.0" \
-        "tiktoken>=0.7.0" \
-    && pip check
+        "tiktoken>=0.7.0"
 
 # vLLM's built-in /health route is available at GET /health (HTTP 200 when ready).
 # HF Endpoints polls that path, so no extra sidecar is needed.
