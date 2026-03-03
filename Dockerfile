@@ -1,18 +1,17 @@
 # ── Qwen3.5-MoE custom container for HF Inference Endpoints ──────────────────
 # Fixes: "Transformers does not recognize model_type `qwen3_5_moe`"
-# Base: vllm/vllm-openai 0.8.5 (stable, ships CUDA 12.4, Python 3.12)
+# Base: vllm/vllm-openai 0.16.0 (latest stable, CUDA 12, Python 3.12)
 # Listening port: 80
 # Model mount:    /repository  (HF Endpoints convention)
 # ─────────────────────────────────────────────────────────────────────────────
-FROM vllm/vllm-openai:v0.8.5
+FROM vllm/vllm-openai:v0.16.0
 
-# Upgrade Transformers from git main so qwen3_5_moe is recognised.
-# Pin to a commit once HF ships a stable release that includes the arch.
+# Transformers 5.2.0 (stable) adds qwen3_5_moe to MODEL_TYPE_TO_CONFIG_CLASS.
 # accelerate  – required by Transformers for device_map / MoE dispatch
 # safetensors – fast weight loading
 # sentencepiece / tiktoken – Qwen tokenizer
 RUN pip install --no-cache-dir \
-        "git+https://github.com/huggingface/transformers.git" \
+        "transformers==5.2.0" \
         "accelerate>=0.34.0" \
         "safetensors>=0.4.3" \
         "sentencepiece>=0.2.0" \
